@@ -1,3 +1,3 @@
 # Final_Project
 
-Please read the project proposal doc for further infos
+Please read the project proposal pdf for further infos
