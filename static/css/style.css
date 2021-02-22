@@ -1,0 +1,30 @@
+body {
+	background-image: url("clocks.jpg");
+}
+#background {
+	background-color: rgb(230, 213, 213);
+	opacity: 0.8;
+	height: 1000px;
+	padding-top: 8%;
+	text-align: center;
+}
+#nav {
+	background-color: rgb(226, 190, 190);
+	opacity: 0.85;
+	height: 150px;
+}
+button {
+	background-color: black;
+}
+#navHeader {
+	text-align: center;
+	text-shadow: 0 0 3px rgb(253, 103, 103), 0 0 3px rgb(255, 135, 135);
+	padding-top: 4%;
+}
+#loginText, #registerText {
+	color: rgb(255, 255, 255);
+	opacity: 0.8;
+}
+#login, #register {
+	padding: 2%;
+}

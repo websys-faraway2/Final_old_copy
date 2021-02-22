@@ -1,0 +1,26 @@
+{
+  "name": "focus-instant",
+  "version": "1.0.0",
+  "description": "Application to help self-learning with others at online study room.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/websys-faraway2/Final_Project.git"
+  },
+  "author": "itws-4500-faraway-group-2",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/websys-faraway2/Final_Project/issues"
+  },
+  "homepage": "https://github.com/websys-faraway2/Final_Project#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.11.17"
+  }
+}
