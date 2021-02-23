@@ -24,6 +24,8 @@ app.get('/', function(req, res){
   res.render('index.html');
 });
 
-http.listen(3030, function(){
-	console.log('Server up on port 3030');
+//ensure the server could run in any port
+const port = process.env.PORT || 3030;
+http.listen(port, function(){
+	console.log(`Server up on port ${port}`);
 });
