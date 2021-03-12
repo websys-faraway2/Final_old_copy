@@ -13,9 +13,7 @@ body {
 	opacity: 0.85;
 	height: 150px;
 }
-button {
-	background-color: black;
-}
+
 #navHeader {
 	text-align: center;
 	text-shadow: 0 0 3px rgb(253, 103, 103), 0 0 3px rgb(255, 135, 135);
@@ -28,3 +26,9 @@ button {
 #login, #register {
 	padding: 2%;
 }
+
+button.btn.btn-primary.pink{
+	background-color: #FFA3A3;
+	border:#FEBEBE;
+}
+
