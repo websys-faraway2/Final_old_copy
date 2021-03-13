@@ -1,0 +1,77 @@
+body {
+	height: 100%;
+	width: 100%;
+}
+#background {
+	background-color: rgb(230, 213, 213);
+	opacity: 0.8;
+	height: 1000px;
+	padding-top: 8%;
+	text-align: center;
+}
+
+.head{
+	background-color: #FF6F6F ;
+	padding: 1%;
+	color: white;
+	margin-bottom: 1%; 
+}
+
+.inline{
+	display: inline-block;
+	vertical-align: top;
+}
+
+/*Main message part*/
+.message{
+	margin: 0 3% 0 3%;
+	width:60%;
+	height:600px;
+	background-color: #FFF7F7;
+}
+
+/*Timer*/
+#timer{
+	font-size:3em;
+	font-weight: bold;
+	background-color: #FF6F6F;
+	color: white;
+	margin: 1% 0 2% 0;
+	width: 100%;
+	border-radius: 15px;
+	padding: 0.5em;
+}
+
+#tasks{
+	background-color: #FFC8C8;
+}
+
+/*Adding Task*/
+.taskDetail{
+	display: none;
+}
+
+#curTask{
+	background-color: #FFC8C8;
+	border-radius: 15px;
+	padding: 0.2em;
+}
+.timeoption{
+	margin:1px;
+	width: 5em;
+}
+
+.btn.btn-primary.pink{
+	background-color: #FFA3A3;
+	border:#FEBEBE;
+}
+
+.btn.btn-primary.pink:active{
+	background-color: #FFEFA3;
+}
+
+.bold{
+	font-weight: bold;
+	font-size: 2em;
+	display: inline;
+}
