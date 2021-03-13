@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
 	//Clicking the button and show the adding list
 	  $("#showAdd").click(function(){
 	    $(".taskDetail").slideToggle();
@@ -55,4 +54,44 @@ function timeCounting(count){
 	if (count >= 0){
 		setTimeout(function(){timeCounting(count)},1000);
 	}
+}
+  
+console.log("test")
+window.addEventListener('load', ()=> {
+    let lon;
+    let lat;
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+            lon = position.coords.longitude;
+            lat = position.coords.latitude;
+			// console.log(lon, lat)
+            get_sun_infos(lon, lat)
+        });
+      } else { 
+        h1.textContent = "cannot get the location, please have a check of your broswer!"
+      }
+});
+
+function get_sun_infos(lon, lat) {
+    // let apiKey = "7aaecaac981dcae96d62e8793d4cc835";
+    // let api = "https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey + "&units=metric";
+	let api = "https://api.sunrise-sunset.org/json?lat=" + lat + "&lng=" + lon + "&date=today"
+    fetch(
+        api
+    )
+    .then(response => {
+        if (!response.ok) {
+            alert("Cannot Identify Location.");
+            throw new Error("Cannot Identify Location.");
+          }
+        return response.json();
+    })
+    .then(data =>display_detail_infos(data));
+};
+
+function display_detail_infos(data) {
+	console.log(data)
+	const { sunrise } = data.results
+	const { sunset } = data.results
+	document.querySelector(".upper_info").innerHTML = "UTC: sunrise:" + sunrise + " sunset: " + sunset;
 }
