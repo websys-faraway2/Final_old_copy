@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <title>Main page</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<link rel = "stylesheet" type = "text/css" href = "css/style-main.css" />
+
+    <!-- Bootstrap include -->
+    <link rel="stylesheet" href="css/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="css/jquery-3.5.1.js"></script>
+    <!-- Javascript includes -->
+    <script src="controller/main.js"></script>
+
+    
+
+    
+  </head>
+
+  <body>
+    <div class="head">
+      <div class="brand_box"><p>Focus-instant</p></div>
+      <div class="upper_info">No Location</div>
+      <div class="upper_box">Account</div>
+      <div class="upper_box">Collection</div>
+    </div>
+    <div id= "main">
+      <div class="inline message">
+        <!-- <div class="animation-area">
+          <ul class="box-area">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div> -->
+      </div>
+      <div class="inline task">
+        <div style="margin-bottom:0.5em;">
+        <p class="bold" >Current Task: <span id= "curTask"></span></p>
+        </div>
+        <div id="timer">00:00:00</div>
+        <div id="tasks"></div>
+        <button  class="btn btn-primary pink" id = "add" >Start</button>
+
+        <button  class="btn btn-primary pink" id = "showAdd">
+          <span class="glyphicon glyphicon-plus"></span> Details
+        </button>
+        <!-- Task detail custom -->
+        <form class="taskDetail">
+          <div class="form-group">
+            <label for="TaskName">Task name</label>
+            <input type="text" class="form-control" id="TaskName" placeholder="TaskName">
+          </div>
+          <div class="form-group">
+            <label for="TaskName">Time</label>
+            <input type="text" class="form-control" id="Time" placeholder="Time">
+            <option class="btn btn-primary pink timeoption" value="60">1 hour</option>
+            <option class="btn btn-primary pink timeoption" value="30">30 min</option>
+            <br>
+            <option class="btn btn-primary pink timeoption" value="15">15 min</option>
+            <option class="btn btn-primary pink timeoption" value="10">10 min</option>
+          </div>
+          <div class="invite">Invite Your Friend</div>         
+        </form>
+
+      </div>
+
+    </div>
+
+
+
+
+  </body>
+</html>

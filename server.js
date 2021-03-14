@@ -17,15 +17,14 @@ app.use(session({
   saveUninitialized: false // Save a session that is new, but no modified
 
 }));
-var sess;
 
 /* Route to the home page*/
-app.get('/', function(req, res){
-  res.render('index.html');
-});
+app.get('/', function (req, res) {
+  res.render('tasks_start.html');
+})
 
 //ensure the server could run in any port
-const port = process.env.PORT || 3030;
+const port = process.env.PORT || 3100;
 http.listen(port, function(){
 	console.log(`Server up on port ${port}`);
 });
