@@ -1,30 +1,48 @@
-const app = require('express')()
-const mongoose = require('mongoose')
-const http = require('http').Server(app)
-app.use(require('express').static('static'));
-
-/* authentication handling */
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+var express = require('express');
+var app = express();
+var http = require('http').Server(app);
+var mongoose = require('mongoose');
+var io = require('socket.io')(http);
 require('dotenv').config();
+const path = require('path');
 
-/* session handling */
-var session = require('express-session');
-app.use(session({
-  name: 'cookie_name',  // The name of the cookie
-  secret:'secret',  // The secret requried for signing cookies
-  resave: false,  // Force save of session for each request
-  saveUninitialized: false // Save a session that is new, but no modified
+app.use(express.static(path.join(__dirname, './app/dist/app')));
 
-}));
-
-/* Route to the home page*/
-app.get('/', function (req, res) {
-  res.render('tasks_start.html');
-})
-
-//ensure the server could run in any port
-const port = process.env.PORT || 3100;
-http.listen(port, function(){
-	console.log(`Server up on port ${port}`);
+// connect to mongodb
+var db = mongoose.connection;
+db.on('error', console.error);
+db.once('open', function(){
+  console.log("Successfully Connected");
 });
+mongoose.connect(process.env.DB_CONN);
+
+// user connected even handler
+io.on('connection', function(socket){
+  
+  // log & brodcast connect event
+  console.log('a user connected');
+  
+  // log disconnect event
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+
+  // message received event handler
+  socket.on('newMessage', function(msg){
+    // log chat msg
+    console.log('newMessage: ' + msg.message);
+    
+    // broadcast chat msg to others
+    socket.broadcast.emit('newMessage', { message: msg.message });
+    
+  });
+  
+});
+
+// app.listen(3000, () => {
+//   console.log(`app listening at http://localhost:3000`)
+// })
+
+http.listen(3000, () => {
+  console.log('socket listen at http://localhost:3030')
+})
