@@ -22,14 +22,15 @@ export class ChatRoomComponent implements OnInit {
   constructor(private chatService: SocketioService) { }
 
   ngOnInit(): void {
-    this.chatService.onNewMessage().subscribe(msg => {
-      console.log('got a msg: ' + msg);
+    this.chatService.onNewMessage().subscribe( (msg) => {
+      this.messages.push(msg);
+      console.log('got a msg --- ' + msg + ': ' + msg);
     });
   }
 
   send() {
     console.log(this.nickname);
     console.log(this.message);
-    this.chatService.sendMessage(this.message);
+    this.chatService.loginUser('1', this.message);
   }
 }

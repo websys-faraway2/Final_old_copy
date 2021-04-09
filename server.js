@@ -17,23 +17,28 @@ db.once('open', function(){
 mongoose.connect(process.env.DB_CONN);
 
 // user connected even handler
-io.on('connection', function(socket){
+io.on('connection', (socket) => {
   
   // log & brodcast connect event
   console.log('a user connected');
   
   // log disconnect event
-  socket.on('disconnect', function(){
+  socket.on('disconnect', () => {
     console.log('user disconnected');
   });
 
+  // login message
+  socket.on('login user', (arg1, callback) => {
+    console.log(arg1);
+    callback({status: 'ok'})
+  });
   // message received event handler
-  socket.on('newMessage', function(msg){
+  socket.on('newMessage', (msg) => {
     // log chat msg
-    console.log('newMessage: ' + msg.message);
+    console.log(msg.id + ': ' + msg.message);
     
     // broadcast chat msg to others
-    socket.broadcast.emit('newMessage', { message: msg.message });
+    socket.broadcast.emit('newMessage', { id: msg.id, message: msg.message });
     
   });
   
