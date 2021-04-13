@@ -16,22 +16,80 @@ db.once('open', function(){
 });
 mongoose.connect(process.env.DB_CONN);
 
+/////////////////////////////////// DATA MDOELS ///////////////////////////////////
+// Messages
+//    with time stamp? 
+//    content & chat room?
+var chatMessage = new mongoose.Schema({
+  usertoken: mongoose.ObjectId,
+  roomtoken: String,
+  content: String,
+  timestamp: Date
+});
+var Message = mongoose.model('Message', chatMessage);
+
+// USER
+//    unexplicit user / token form
+//    nickname
+var userEntity = new mongoose.Schema({
+  usertoken: mongoose.ObjectId,
+  nickname: String
+})
+var User = mongoose.model('User', userEntity);
+
+// ROOM
+//    name & token
+//    public/private
+//    type||tag
+var roomEntity = new mongoose.Schema({
+  roomtoken: mongoose.ObjectId,
+  roomname: String,
+  usertokens: Array,
+  public: Boolean,
+  tags: Array
+})
+var Room = mongoose.model('Room', roomEntity);
+
+// WORKFLOW
+//    [pre] -> this -> [next]
+//    name || room token || user token
+//    time stamp(create) || due time
+//    done
+var workFlow = new mongoose.Schema({
+  worktoken: mongoose.ObjectId,
+  roomtoken: String,
+  usertoken: String,
+  previous: String,
+  next: String,
+  timestamp: Date,
+  name: String,
+  duetime: Date,
+  isdone: Boolean
+})
+var Workflow = new mongoose.model('Workflow', workFlow);
+
+app.post('/api', (req, res) => {
+  console.log(req.query)
+  res.json({T: 'lll'})
+})
+
 // user connected even handler
 io.on('connection', (socket) => {
   
   // log & brodcast connect event
-  console.log('a user connected');
+  console.log('a user connected to public room');
   
   // log disconnect event
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
 
-  // login message
-  socket.on('login user', (arg1, callback) => {
+  // join room message
+  socket.on('join room', (arg1, callback) => {
     console.log(arg1);
     callback({status: 'ok'})
   });
+
   // message received event handler
   socket.on('newMessage', (msg) => {
     // log chat msg
@@ -44,10 +102,10 @@ io.on('connection', (socket) => {
   
 });
 
-// app.listen(3000, () => {
-//   console.log(`app listening at http://localhost:3000`)
-// })
+app.listen(3030, () => {
+  console.log(`api listening at http://localhost:3030`)
+})
 
 http.listen(3000, () => {
-  console.log('socket listen at http://localhost:3030')
+  console.log('socket listen at http://localhost:3000')
 })
