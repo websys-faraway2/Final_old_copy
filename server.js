@@ -6,6 +6,8 @@ var io = require('socket.io')(http);
 require('dotenv').config();
 const path = require('path');
 
+var url = "mongodb+srv://new_user0:zxcasdqwe321@cluster0.t6iag.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+
 app.use(express.static(path.join(__dirname, './app/dist/app')));
 
 // connect to mongodb
@@ -14,7 +16,7 @@ db.on('error', console.error);
 db.once('open', function(){
   console.log("Successfully Connected");
 });
-mongoose.connect(process.env.DB_CONN);
+mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true });
 
 /////////////////////////////////// DATA MDOELS ///////////////////////////////////
 // Messages
@@ -102,9 +104,130 @@ io.on('connection', (socket) => {
   
 });
 
-app.listen(3030, () => {
-  console.log(`api listening at http://localhost:3030`)
+const { Schema } = mongoose;
+const userSchemaApp = new Schema({
+  user_name: { type: String },
+  user_token: { type: String },
+  number_finishedTasks: { type: Number },
+  number_dropedTasks: { type: Number },
+  number_times: { type: Number },
+  number_connection: { type: Number },
+
+  current_task: { type: String },
+  current_task_time: { type: Number },
+  current_task_ver: { type: String },
+
+  to_dos: {
+    to_do_1: { type: String },
+    to_do_1_time: { type: Number },
+    to_do_1_ver: { type: String },
+    to_do_2: { type: String },
+    to_do_2_time: { type: Number },
+    to_do_2_ver: { type: String },
+    to_do_3: { type: String },
+    to_do_3_time: { type: Number },
+    to_do_3_ver: { type: String },
+    to_do_4: { type: String },
+    to_do_4_time: { type: Number },
+    to_do_4_ver: { type: String },
+    to_do_5: { type: String },
+    to_do_5_time: { type: Number },
+    to_do_5_ver: { type: String },
+  },
+
+  collection_record: {
+    collection_1: { type: Boolean },
+    collection_1_pop_up: { type: Boolean },
+    collection_2: { type: Boolean },
+    collection_2_pop_up: { type: Boolean },
+    collection_3: { type: Boolean },
+    collection_3_pop_up: { type: Boolean },
+    collection_4: { type: Boolean },
+    collection_4_pop_up: { type: Boolean },
+    collection_5: { type: Boolean },
+    collection_5_pop_up: { type: Boolean },
+    collection_6: { type: Boolean },
+    collection_6_pop_up: { type: Boolean },
+    collection_7: { type: Boolean },
+    collection_7_pop_up: { type: Boolean },
+  }
+
+});
+const UserApp = mongoose.model('UserApp', userSchemaApp);
+
+app.get('login/:token', function(req, res) {
+  var token = req.params.token;
+
+  UserApp.findOne({user_token: token}).exec(function(err, user) {
+    if (user) {
+      if (err) res.json(err);
+      else res.json({'msg': 'login'})
+    }
+    else {
+      res.json({'msg': 'No token found!'})
+    }
+  });
 })
+
+app.post('signup/:token', function(req, res) {
+  var token = req.params.token;
+
+  var thisUserApp = new UserApp({
+    user_name: "instantFocus",
+    user_token: token,
+    number_finishedTasks: 0,
+    number_dropedTasks: 0,
+    number_times: 0,
+    number_connection: 0,
+  
+    current_task: "none",
+    current_task_time: 0,
+    current_task_ver: "none",
+  
+    to_dos: {
+      to_do_1: "none",
+      to_do_1_time: 0,
+      to_do_1_ver: "none",
+      to_do_2: "none",
+      to_do_2_time: 0,
+      to_do_2_ver: "none",
+      to_do_3: "none",
+      to_do_3_time: 0,
+      to_do_3_ver: "none",
+      to_do_4: "none",
+      to_do_4_time: 0,
+      to_do_4_ver: "none",
+      to_do_5: "none",
+      to_do_5_time: 0,
+      to_do_5_ver: "none",
+    },
+  
+    collection_record: {
+      collection_1: false,
+      collection_1_pop_up: false,
+      collection_2: false,
+      collection_2_pop_up: false,
+      collection_3: false,
+      collection_3_pop_up: false,
+      collection_4: false,
+      collection_4_pop_up: false,
+      collection_5: false,
+      collection_5_pop_up: false,
+      collection_6: false,
+      collection_6_pop_up: false,
+      collection_7: false,
+      collection_7_pop_up: false,
+    }
+  })
+  thisUserApp.save(function (err) {
+    if (err) res.json(err);
+    else res.json({'msg': 'Save the new account'})
+})
+})
+
+// app.listen(3030, () => {
+//   console.log(`api listening at http://localhost:3030`)
+// })
 
 http.listen(3000, () => {
   console.log('socket listen at http://localhost:3000')
