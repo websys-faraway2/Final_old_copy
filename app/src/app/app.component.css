@@ -1,0 +1,11 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 4vh;
+    min-height: 100vh;
+    background-image: url("https://source.unsplash.com/1920x1080/?nature");
+    padding-bottom: 1%;
+}
+
+.text_center {
+    text-align: center;
+}

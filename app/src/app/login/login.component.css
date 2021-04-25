@@ -1,0 +1,66 @@
+.box_1 {
+    margin-top: 190px;
+    border: 2px solid grey;
+    padding: 2%;
+    border-radius: 10px;
+    background-color: rgba(253, 253, 253,0.8);
+    width: 80%;
+    margin-left: 8%;
+}
+
+.box_2 {
+    margin-top: 20px;
+    /* border: 2px solid grey; */
+    padding: 20px;
+    border-radius: 16px;
+    background: white;
+}
+
+.signup_word {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: bold;
+    margin: 10px;
+    color: grey;
+}
+
+.signup {
+    display: inline-block;
+    border: 0px solid;
+    background: #4285F4;
+    color: white;
+    font-size: 17px;
+    border-radius: 8px;
+    font-weight: bold;
+    /* padding: 2px; */
+}
+
+.token_for_signup {
+    font-size: 21px;
+    background: #e8f0fe;
+    border: 0px solid;
+    color: #4285F4;
+    padding: 1px;
+    width: 46%;
+    margin-left: 26%;
+    border-radius: 6px;
+}
+
+.input_for_login {
+    width: 46%;
+    font-size: 17px;
+    border-radius: 6px;
+    border: 1px solid grey;
+    color: grey;
+    margin: 10px
+}
+
+.button_for_login {
+    display: inline-block;
+    border: 0px solid;
+    background: #0F9D58;
+    color: white;
+    font-size: 17px;
+    border-radius: 8px;
+    font-weight: bold;
+}

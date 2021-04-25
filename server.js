@@ -8,15 +8,16 @@ const path = require('path');
 
 var url = "mongodb+srv://new_user0:zxcasdqwe321@cluster0.t6iag.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
-app.use(express.static(path.join(__dirname, './app/dist/app')));
+app.use(express.static(path.join(__dirname, './quiz2/dist/quiz2')));
 
-// connect to mongodb
-var db = mongoose.connection;
-db.on('error', console.error);
-db.once('open', function(){
-  console.log("Successfully Connected");
-});
 mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true });
+
+// connect to the database and inform
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', function() {
+  console.log("MongoDB database connection established successfully");
+});
 
 /////////////////////////////////// DATA MDOELS ///////////////////////////////////
 // Messages
@@ -155,7 +156,7 @@ const userSchemaApp = new Schema({
 });
 const UserApp = mongoose.model('UserApp', userSchemaApp);
 
-app.get('login/:token', function(req, res) {
+app.get('/login/:token', function(req, res) {
   var token = req.params.token;
 
   UserApp.findOne({user_token: token}).exec(function(err, user) {
@@ -169,7 +170,7 @@ app.get('login/:token', function(req, res) {
   });
 })
 
-app.post('signup/:token', function(req, res) {
+app.post('/signup/:token', function(req, res) {
   var token = req.params.token;
 
   var thisUserApp = new UserApp({
@@ -222,12 +223,12 @@ app.post('signup/:token', function(req, res) {
   thisUserApp.save(function (err) {
     if (err) res.json(err);
     else res.json({'msg': 'Save the new account'})
-})
+  })
 })
 
-// app.listen(3030, () => {
-//   console.log(`api listening at http://localhost:3030`)
-// })
+app.listen(3030, () => {
+  console.log(`api listening at http://localhost:3030`)
+})
 
 http.listen(3000, () => {
   console.log('socket listen at http://localhost:3000')

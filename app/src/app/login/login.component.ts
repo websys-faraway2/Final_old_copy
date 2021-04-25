@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   
   public generate_token() {
     this.token = uuidv4();
-    (<HTMLInputElement>document.querySelector('.token_for_signup')).innerHTML = this.token
+    (<HTMLInputElement>document.querySelector('.token_for_signup')).innerHTML = "There is the token: " + this.token
     axios.post('http://localhost:3030/signup/' + this.token)
     .then(response => {
       console.log(response.data.msg)
@@ -36,13 +36,14 @@ export class LoginComponent implements OnInit {
           console.log(response.data.msg)
           if (response.data.msg == "login")
           {
-            console.log(response.data.msg)
+            // console.log(response.data.msg)
           }
           else {
             alert(response.data.msg)
           }
-
         })
+    } else {
+      alert("No token detected!")
     }
   }
 

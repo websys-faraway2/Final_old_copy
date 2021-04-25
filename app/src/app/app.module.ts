@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { WorkflowComponent } from './workflow/workflow.component';
 import { LoginComponent } from './login/login.component';
+import {RouterModule, Routes} from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,11 @@ import { LoginComponent } from './login/login.component';
   ],
   imports: [
     HttpClientModule,
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+      {path:'login',component:LoginComponent},
+      {path:'chat_room',component:ChatRoomComponent}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
