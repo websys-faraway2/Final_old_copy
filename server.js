@@ -6,15 +6,15 @@ var io = require('socket.io')(http);
 require('dotenv').config();
 const path = require('path');
 
-var url = "mongodb+srv://new_user0:zxcasdqwe321@cluster0.t6iag.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-
-app.use(express.static(path.join(__dirname, './quiz2/dist/quiz2')));
+// var url = "mongodb+srv://new_user0:zxcasdqwe321@cluster0.t6iag.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+var url = "mongodb://new_user0:zxcasdqwe321@cluster0-shard-00-00.t6iag.mongodb.net:27017,cluster0-shard-00-01.t6iag.mongodb.net:27017,cluster0-shard-00-02.t6iag.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-i19gfh-shard-0&authSource=admin&retryWrites=true&w=majority"
+app.use(express.static(path.join(__dirname, './app/dist/app')));
 
 mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true });
 
 // connect to the database and inform
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('error', console.error);
 db.once('open', function() {
   console.log("MongoDB database connection established successfully");
 });
@@ -170,8 +170,9 @@ app.get('/login/:token', function(req, res) {
   });
 })
 
-app.post('/signup/:token', function(req, res) {
-  var token = req.params.token;
+app.post('/signup', function(req, res) {
+  var token = req.query.token;
+  console.log(token)
 
   var thisUserApp = new UserApp({
     user_name: "instantFocus",
@@ -222,7 +223,7 @@ app.post('/signup/:token', function(req, res) {
   })
   thisUserApp.save(function (err) {
     if (err) res.json(err);
-    else res.json({'msg': 'Save the new account'})
+    res.status(200).json({'msg': 'Save the new account'})
   })
 })
 

@@ -12,4 +12,8 @@ export class HttpService {
   public sendGetRequest(u: string) {
     return this.httpClient.post('/api', '', {params: {userid: u}})
   }
+
+  public signUpToken(u: any) {
+    return this .httpClient.post('/signup', '', {params: {token: u}})
+  }
 }

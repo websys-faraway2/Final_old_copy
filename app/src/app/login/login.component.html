@@ -5,11 +5,11 @@
         <div class="box_signup">
             <p class="signup_word">Don't have an account yet? Get a token for free</p>
             <button class="signup" (click)="generate_token()">Get a token</button>
-            <p class="token_for_signup"></p>
+            <p class="token_for_signup">{{token}}</p>
         </div>
         <hr>
         <div class="box_login">
-            <input class="input_for_login">
+            <input class="input_for_login" #login_input (keyup)="onInputLogin(login_input.value)">
             <button class="button_for_login" (click)="login()">Login</button>
         </div>
     </div>
