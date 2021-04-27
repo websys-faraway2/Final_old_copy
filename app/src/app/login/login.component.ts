@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 const axios = require('axios').default;
 const uuidv4 = require("uuid/v4")
 declare var require: any;
@@ -14,7 +15,11 @@ export class LoginComponent implements OnInit {
   // token_foruse = uuidv4();
   token;
   login_input = ''
-  constructor(private httpService: HttpService) { }
+  constructor(
+    private httpService: HttpService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
   onInputLogin(v: string) {
     this.login_input = v
   }
@@ -42,7 +47,7 @@ export class LoginComponent implements OnInit {
           console.log(response.data.msg)
           if (response.data.msg == "login")
           {
-            // console.log(response.data.msg)
+            this.router.navigate(['/user-info/'+input_token]);
           }
           else {
             alert(response.data.msg)

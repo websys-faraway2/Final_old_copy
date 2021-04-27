@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SocketioService } from '../socketio.service'
+import { SocketioService } from '../../socketio.service'
 @Component({
   selector: 'app-chat-room',
   templateUrl: './chat-room.component.html',
