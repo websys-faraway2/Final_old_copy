@@ -19,22 +19,27 @@
 </div>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon1">@UserName</span>
+    <span class="input-group-text" id="basic-addon1">@ User Name</span>
   </div>
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+  <input type="text" class="form-control" placeholder='user_name' aria-label="Username" aria-describedby="basic-addon1">
+  <button></button>
 </div>
 <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    Cras justo odio
-    <span class="badge badge-primary badge-pill">14</span>
+    Number of Finished Tasks
+    <span class="badge badge-primary badge-pill">{{number_finished}}</span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    Dapibus ac facilisis in
-    <span class="badge badge-primary badge-pill">2</span>
+    Number of Dropped Tasks
+    <span class="badge badge-primary badge-pill">{{number_dropped}}</span>
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    Morbi leo risus
-    <span class="badge badge-primary badge-pill">1</span>
+    Number of Times 
+    <span class="badge badge-primary badge-pill">{{number_times}}</span>
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    Number of Connections 
+    <span class="badge badge-primary badge-pill">{{number_conn}}</span>
   </li>
 </ul>
 <router-outlet #routerOutlet="outlet"></router-outlet>
