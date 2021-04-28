@@ -1,0 +1,93 @@
+.profile_box {
+    width: 70%;
+    margin-left: 15%;
+    text-align: center;
+    padding: 3%;
+}
+
+.name {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.update_name_input {
+    border: 1px solid grey;
+    border-radius: 6px;
+    padding: 5px;
+    width: 35%;
+}
+
+.update_name_btn {
+    border: 1px solid grey;
+    font-size: 17px;
+    border-radius: 6px;
+    padding: 4px;
+    width: 12%;
+    margin-left: 3%;
+}
+
+.status_des {
+    font-size: 17px;
+    font-weight: bold;
+    color: grey;
+    /* margin-top: 1%; */
+}
+
+.btn_1, .btn_2, .btn_3 {
+    border: 0.5px solid grey;
+    font-size: 20px;
+    border-radius: 8px;
+    padding: 4px;
+    font-weight: bold;
+
+}
+
+.btn_2, .btn_3 {
+    margin-left: 5%;
+}
+
+.update_status_input {
+    border: 1px solid grey;
+    border-radius: 6px;
+    padding: 5px;
+    width: 35%;
+    margin-top: 3%;
+}
+
+.update_stauts_btn {    
+    border: 1px solid grey;
+    font-size: 17px;
+    border-radius: 6px;
+    padding: 4px;
+    width: 12%;
+    margin-left: 3%;
+}
+
+.current_status {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.logout {
+    border: 1px solid grey;
+    font-size: 22px;
+    border-radius: 6px;
+    width: 10%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.delete {
+    border: 0px solid grey;
+    font-size: 22px;
+    border-radius: 6px;
+    width: 18%;
+    background-color: #DB4437;
+    color: white;
+}
+
+.update_profile {
+    border: 2px solid grey;
+    padding: 3%;
+    border-radius: 16px;
+}
