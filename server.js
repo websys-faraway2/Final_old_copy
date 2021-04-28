@@ -227,6 +227,17 @@ app.post('/signup', function(req, res) {
   })
 })
 
+app.get('/getUserApp/:token', function(req, res) {
+  token = req.params.token
+  UserApp.findOne({user_token: token}).exec(function(err, data) {
+    if (err) res.json(err);
+    else {
+        console.log(data)
+        res.send(data)
+    }
+  })
+})
+
 app.listen(3030, () => {
   console.log(`api listening at http://localhost:3030`)
 })
