@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-const axios = require('axios').default;
-declare var require: any;
+import { ActivatedRoute, Router } from '@angular/router';
+import { HttpService } from '../../http.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,21 +9,35 @@ declare var require: any;
 })
 export class ProfileComponent implements OnInit {
 
-  token = 'd388a34c-9dbc-427a-9a6f-96cf8b2a4336';
+  token = '';
   user_data;
   user_name;
 
-  current_status = "Working"
+  current_task = ''
+  current_task_time = 0
+  current_task_ver = ''
 
-  constructor() { }
+  constructor(
+    private httpService: HttpService,
+    private router: Router,
+    private routeInfo: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-    axios.get('http://localhost:3030/getUserApp/' + this.token)
-    .then(response => {
-      console.log(response.data.user_name)
-      this.user_data = response.data
-      this.user_name = response.data.user_name
+    this.routeInfo.params.subscribe((params) => this.token = params["token"])
+    this.httpService.getProfile(this.token).subscribe((data) => {
+      this.user_name = data['name']
+      this.current_task = data['task']
+      this.current_task_time = data['time']
+      this.current_task_ver = data['ver']
     })
   }
 
+  updateName(u: string) {
+    console.log(u)
+  }
+
+  logOut() {
+    this.router.navigate([''])
+  }
 }

@@ -4,12 +4,14 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { UserCollectionComponent } from './user-collection/user-collection.component';
 import { WorkflowComponent } from './workflow/workflow.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserInfoComponent } from './user-info.component';
 
 const routes: Routes = [
-  { path: 'user-collection', component: UserCollectionComponent},
-  { path: 'chat-room', component: ChatRoomComponent},
-  { path: 'workflow', component: WorkflowComponent},
-  { path: 'profile', component: ProfileComponent}
+  { path: 'user-info/:token', component: UserInfoComponent},
+  { path: 'collection/:token', component: UserCollectionComponent},
+  { path: 'chat-room/:token', component: ChatRoomComponent},
+  { path: 'workflow/:token', component: WorkflowComponent},
+  { path: 'profile/:token', component: ProfileComponent}
 ];
 
 @NgModule({

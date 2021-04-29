@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from '../../http.service';
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-user-collection',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserCollectionComponent implements OnInit {
 
-  constructor() { }
+  token = '';
+
+  constructor(
+    private httpService: HttpService,
+    private router: Router, 
+    private routeInfo: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+    this.routeInfo.params.subscribe((params) => this.token = params["token"])
   }
 
 }

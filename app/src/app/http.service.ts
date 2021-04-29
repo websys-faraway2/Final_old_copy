@@ -14,6 +14,10 @@ export class HttpService {
   }
 
   public signUpToken(u: any) {
-    return this .httpClient.post('/signup', '', {params: {token: u}})
+    return this.httpClient.post('/signup', '', {params: {token: u}})
+  }
+
+  public getProfile(u: any) {
+    return this.httpClient.get('getprofile', {params: {token: u}})
   }
 }

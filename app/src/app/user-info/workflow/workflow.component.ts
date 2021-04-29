@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../http.service';
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
   selector: 'app-workflow',
@@ -8,9 +9,17 @@ import { HttpService } from '../../http.service';
 })
 export class WorkflowComponent implements OnInit {
 
-  constructor(private httpService: HttpService) { }
+
+  token = '';
+  
+  constructor(
+    private httpService: HttpService,
+    private router: Router, 
+    private routeInfo: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
+    this.routeInfo.params.subscribe((params) => this.token = params["token"])
     this.httpService.sendGetRequest('user').subscribe((data) => {
       console.log(data)
     })

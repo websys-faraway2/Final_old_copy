@@ -238,6 +238,23 @@ app.get('/getUserApp/:token', function(req, res) {
   })
 })
 
+app.get('/getprofile', (req, res) => {
+  token = req.query.token
+  UserApp.findOne({user_token: token}).exec((err, data) => {
+    if (err) res.json(err);
+    res.status(200).json({
+      name: data.user_name,
+      task: data.current_task,
+      time: data.current_task_time,
+      ver: data.current_task_ver
+    })
+  })
+})
+
+app.post('/updateName', (req, res) => {
+  token = req.query.token
+})
+
 app.listen(3030, () => {
   console.log(`api listening at http://localhost:3030`)
 })
