@@ -28,4 +28,8 @@ export class HttpService {
   public addTodos(u: any, t: any, m: any, v: any) {
     return this.httpClient.post('addtodos', '', {params: {token: u, task:t, time:m, ver:v}})
   }
+
+  public getUserInfo(u: any) {
+    return this.httpClient.get('getinfo', {params: {token: u}})
+  }
 }

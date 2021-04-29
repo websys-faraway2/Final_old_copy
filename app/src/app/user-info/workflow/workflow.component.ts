@@ -10,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 export class WorkflowComponent implements OnInit {
 
 
-  token = 'f37a75dc-034a-4429-b573-4715ccfcea24';
+  token = '';
   todo_list: any
   
   constructor(
@@ -20,7 +20,7 @@ export class WorkflowComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    // this.routeInfo.params.subscribe((params) => this.token = params["token"])
+    this.routeInfo.params.subscribe((params) => this.token = params["token"])
     this.refresh()
   }
 

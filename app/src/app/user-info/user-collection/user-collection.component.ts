@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 export class UserCollectionComponent implements OnInit {
 
   token = '';
+  collection_list = [1,2,3,4,5,6,7,8]
 
   constructor(
     private httpService: HttpService,

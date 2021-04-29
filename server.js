@@ -306,6 +306,20 @@ app.post('/addtodos', (req, res) => {
   })
 })
 
+app.get('/getinfo', (req, res) => {
+  token = req.query.token
+  UserApp.findOne({user_token: token}).exec((err, data) => {
+    if (err) res.json(err);
+    res.status(200).json({
+      name: data.user_name,
+      finished: data.number_finishedTasks,
+      dropped: data.number_dropedTasks,
+      times: data.number_times,
+      count: data.number_connection
+    })
+  })
+})
+
 app.listen(3030, () => {
   console.log(`api listening at http://localhost:3030`)
 })
