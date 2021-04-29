@@ -255,6 +255,57 @@ app.post('/updateName', (req, res) => {
   token = req.query.token
 })
 
+app.get('/gettodos', (req, res) => {
+  token = req.query.token
+  UserApp.findOne({user_token: token}).exec((err, data) => {
+    if (err) res.json(err);
+    output = []
+    output.push({
+      task: data.to_dos.to_do_1,
+      time: data.to_dos.to_do_1_time,
+      ver: data.to_dos.to_do_1_ver
+    })
+    output.push({
+      task: data.to_dos.to_do_2,
+      time: data.to_dos.to_do_2_time,
+      ver: data.to_dos.to_do_2_ver
+    })
+    output.push({
+      task: data.to_dos.to_do_3,
+      time: data.to_dos.to_do_3_time,
+      ver: data.to_dos.to_do_3_ver
+    })
+    output.push({
+      task: data.to_dos.to_do_4,
+      time: data.to_dos.to_do_4_time,
+      ver: data.to_dos.to_do_4_ver
+    })
+    output.push({
+      task: data.to_dos.to_do_5,
+      time: data.to_dos.to_do_5_time,
+      ver: data.to_dos.to_do_5_ver
+    })
+    console.log(output)
+    res.status(200).json(output)
+  })
+})
+
+app.post('/addtodos', (req, res) => {
+  token = req.query.token
+  
+  UserApp.findOne({user_token: token}, (err, data) => {
+    if (err) throw err;
+    data.to_dos.to_do_1 = req.query.task
+    data.to_dos.to_do_1_time = req.query.time
+    data.to_dos.to_do_1_ver = req.query.ver
+    data.save((err, saved) => {
+      if (err) return console.log('error saving valid to Db');
+      res.status(200).json("ADDED")
+    })
+
+  })
+})
+
 app.listen(3030, () => {
   console.log(`api listening at http://localhost:3030`)
 })

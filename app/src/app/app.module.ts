@@ -24,7 +24,7 @@ import { UserInfoModule } from './user-info/user-info.module';
     RouterModule.forRoot([
       {path:'login', component: LoginComponent},
       {path: 'user-info/:token', component: UserInfoComponent},
-      {path: '', redirectTo: '/login', pathMatch: 'full'}
+      {path: '', redirectTo: 'user-info/workflow', pathMatch: 'full'}
     ]),
     UserInfoModule
   ],

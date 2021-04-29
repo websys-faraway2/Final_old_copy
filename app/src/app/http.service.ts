@@ -20,4 +20,12 @@ export class HttpService {
   public getProfile(u: any) {
     return this.httpClient.get('getprofile', {params: {token: u}})
   }
+
+  public getTodos(u: any) {
+    return this.httpClient.get('gettodos', {params: {token: u}})
+  }
+
+  public addTodos(u: any, t: any, m: any, v: any) {
+    return this.httpClient.post('addtodos', '', {params: {token: u, task:t, time:m, ver:v}})
+  }
 }

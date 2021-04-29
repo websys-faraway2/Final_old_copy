@@ -15,4 +15,57 @@
     {{token}}
   </span>
 </nav>
-<p>workflow works!</p>
+<div class="container m-5 p-2 rounded mx-auto bg-light shadow">
+    <!-- App title section -->
+    <div class="row m-1 p-4">
+        <div class="col">
+            <div class="p-1 h1 text-primary text-center mx-auto display-inline-block">
+                <u>My Todo-list</u>
+            </div>
+        </div>
+    </div>
+    <!-- Create todo section -->
+    <div class="row m-1 p-3">
+        <div class="col col-11 mx-auto">
+            <div class="row bg-white rounded shadow-sm p-2 add-todo-wrapper align-items-center justify-content-center">
+                <div class="col">
+                    <input class="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" #task placeholder="Add new ..">
+                </div>
+                <div class="col">
+                  <input class="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" #time placeholder="Time ..">
+                </div>
+                <div class="col">
+                  <input class="form-control form-control-lg border-0 add-todo-input bg-transparent rounded" type="text" #version placeholder="Version ..">
+                </div>
+                <div class="col-auto px-0 mx-0 mr-2">
+                    <button type="button" class="btn btn-primary" (click)='addTodo(task.value, time.value, version.value)'>Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-2 mx-4 border-black-25 border-bottom"></div>
+    <!-- Todo list section -->
+    <div class="row mx-1 px-5 pb-3 w-80" *ngFor="let todo of todo_list">
+        <div class="col mx-auto" >
+            <!-- Todo Item 1 -->
+            <div class="row px-3 align-items-center todo-item rounded">
+                <h3>
+                  {{todo.task}} 
+                  <span class="badge badge-secondary">
+                    {{todo.ver}}
+                  </span>
+                </h3>
+                <div class="col-auto m-1 p-0 px-3 d-none">
+                </div>
+                <div class="col-auto m-1 p-0 todo-actions">
+                    <div class="row todo-created-info">
+                        <div class="col-auto d-flex align-items-right pr-2">
+                            <i class="fa fa-info-circle my-2 px-2 text-black-50 btn" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Created date"></i>
+                            <label class="date-label my-2 text-black-50">{{todo.time}}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
