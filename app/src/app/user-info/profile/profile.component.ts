@@ -34,7 +34,8 @@ export class ProfileComponent implements OnInit {
   }
 
   updateName(u: string) {
-    console.log(u)
+    console.log("Hello!",u)
+    this.user_name=u
   }
 
   logOut() {
