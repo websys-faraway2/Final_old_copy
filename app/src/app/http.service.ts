@@ -21,6 +21,10 @@ export class HttpService {
     return this.httpClient.get('getprofile', {params: {token: u}})
   }
 
+  public getCollection(u: any) {
+    return this.httpClient.get('getcollection', {params: {token: u}})
+  }
+
   public getTodos(u: any) {
     return this.httpClient.get('gettodos', {params: {token: u}})
   }

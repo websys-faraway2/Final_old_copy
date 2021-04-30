@@ -252,6 +252,24 @@ app.get('/getprofile', (req, res) => {
   })
 })
 
+app.get('/getcollection', (req, res) => {
+  token = req.query.token
+  UserApp.findOne({user_token: token}).exec((err, data) => {
+    if (err) res.json(err);
+    console.log(data.collection_record.collection_1)
+    res.status(200).json({
+      collection1: data.collection_record.collection_1,
+      collection2: data.collection_record.collection_2,
+      collection3: data.collection_record.collection_3,
+      collection4: data.collection_record.collection_4,
+      collection5: data.collection_record.collection_5,
+      collection6: data.collection_record.collection_6,
+      collection7: data.collection_record.collection_7,
+      collection8: data.collection_record.collection_8
+    })
+  })
+})
+
 app.post('/updateName', (req, res) => {
   token = req.query.token
 })
