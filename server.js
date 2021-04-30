@@ -1,4 +1,5 @@
-var express = require('express');
+var express = require('express')
+  , cors = require('cors');
 var app = express();
 var http = require('http').Server(app);
 var mongoose = require('mongoose');

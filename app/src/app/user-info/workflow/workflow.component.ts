@@ -27,8 +27,9 @@ export class WorkflowComponent implements OnInit {
   addTodo(t,m,v) {
     console.log(t,m,v)
     this.httpService.addTodos(this.token, t, m, v).subscribe((data) => {
-      this.todo_list.pop()
-      // this.todo_list.splice(0,1)
+      //this.todo_list.pop()
+      this.todo_list.splice(0,1)
+      //console.log('Hello log',this.todo_list)
       this.todo_list.push({task:t, time:m, ver:v})
     })
   }
