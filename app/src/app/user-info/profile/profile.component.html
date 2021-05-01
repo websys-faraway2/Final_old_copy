@@ -21,7 +21,7 @@
     <div class="update_profile">
         <div class="update_name">
             <input class="update_name_input" #name [value]='user_name'>
-            <button class="update_name_btn" (click)='updateName(name.value)'>Update</button>
+            <button class="update_name_btn btn btn-primar" (click)='updateName(name.value)'>Update</button>
         </div>
         <hr>
         <div class="status">
@@ -34,8 +34,8 @@
         </div>
     </div>
     <br/>
-    <button class="logout" (click)='logOut()'>Log Out</button>
+    <button class="logout btn btn-primar inline-btn" (click)='logOut()'>Log Out</button>
     <br/>
-    <button class="delete">Delete the Account</button>
+    <button class="delete inline-btn">Delete the Account</button>
 
 </div>

@@ -256,7 +256,6 @@ app.get('/getcollection', (req, res) => {
   token = req.query.token
   UserApp.findOne({user_token: token}).exec((err, data) => {
     if (err) res.json(err);
-    console.log(data.collection_record.collection_1)
     res.status(200).json({
       collection1: data.collection_record.collection_1,
       collection2: data.collection_record.collection_2,
